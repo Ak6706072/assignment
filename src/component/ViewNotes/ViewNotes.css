@@ -1,16 +1,18 @@
 .view-notes {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
-.view-notes-table > thead {
-  text-align: center;
-  font-weight: bold;
+.view-notes-header {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
 }
-
-.tr-btn {
-  background-color: rgba(212, 30, 30, 0.808);
-  color: white;
-  margin: 2px;
+.all-notes-header > * {
+  margin: 5px;
+}
+.all-notes-header > button {
+  background-color: rgba(202, 39, 39, 0.877);
   border: 0px;
-  height: 40px;
 }

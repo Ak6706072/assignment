@@ -3,13 +3,20 @@ import "./CreateNotes.css";
 function CreateNotes({ notes, setNotes }) {
   const [noteText, setNoteText] = useState("");
   const [noteDate, setNoteDate] = useState("");
+  const [err, setErr] = useState("");
   const createNote = (e) => {
     e.preventDefault();
+    if (noteDate == "" || noteText == "") {
+      setErr("Mandaotory fields");
+      return;
+    } else {
+      setErr("");
+    }
     const date = new Date(noteDate);
     let id;
     if (notes.length == 0) id = 0;
     else {
-      id = ++notes[notes.length - 1].id;
+      id = notes[notes.length - 1].id + 1;
     }
     const obj = {
       id: id,
@@ -17,11 +24,11 @@ function CreateNotes({ notes, setNotes }) {
       noteDate: noteDate,
       isEditing: false,
     };
-
-    // console.log(date, date.getMonth(), date.getFullYear(), noteDate, noteText);
-    // console.log(obj, id);
+    // console.log(noteDate, noteText);
     const allNotes = [...notes, obj];
     setNotes(allNotes);
+    setNoteText("");
+    setNoteDate("");
   };
   return (
     <div className="notes">
@@ -29,6 +36,7 @@ function CreateNotes({ notes, setNotes }) {
         <input
           className="notes-input"
           type="text"
+          value={noteText}
           placeholder="type your notes here"
           onChange={(e) => {
             setNoteText(e.target.value);
@@ -37,6 +45,7 @@ function CreateNotes({ notes, setNotes }) {
         <input
           className="notes-input"
           type="date"
+          value={noteDate}
           onChange={(e) => {
             setNoteDate(e.target.value);
           }}
@@ -45,6 +54,7 @@ function CreateNotes({ notes, setNotes }) {
           Create
         </button>
       </form>
+      <p>{err}</p>
     </div>
   );
 }
