@@ -1,0 +1,16 @@
+.view-notes {
+  display: flex;
+  justify-content: center;
+}
+.view-notes-table > thead {
+  text-align: center;
+  font-weight: bold;
+}
+
+.tr-btn {
+  background-color: rgba(212, 30, 30, 0.808);
+  color: white;
+  margin: 2px;
+  border: 0px;
+  height: 40px;
+}

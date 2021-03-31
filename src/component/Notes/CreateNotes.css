@@ -1,0 +1,19 @@
+.notes {
+  background-color: aliceblue;
+  height: 20vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.notes-btn {
+  background-color: rgba(212, 30, 30, 0.808);
+  color: white;
+  margin: 2px;
+  border: 0px;
+  height: 40px;
+}
+.notes-input {
+  margin: 2px;
+  height: 40px;
+}
