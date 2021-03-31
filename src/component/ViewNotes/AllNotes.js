@@ -70,7 +70,7 @@ function AllNotes({ notes, setNotes, id, noteText, noteDate, isEditing }) {
         />
         ||
         <button onClick={() => noteDelete(id)}>Delete</button>
-        <button onClick={() => saveNote(id)}>Edit</button>
+        <button onClick={() => saveNote(id)}>Save</button>
       </div>
     );
   }
