@@ -38,7 +38,7 @@ function AllNotes({ notes, setNotes, id, noteText, noteDate, isEditing }) {
     console.log(allNotes);
     setNotes(allNotes);
   };
-  const sortInAsc = () => {};
+
   if (isEditing === false) {
     return (
       <div className="all-notes-header">

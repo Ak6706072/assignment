@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CreateNotes.css";
+
 function CreateNotes({ notes, setNotes }) {
   const [noteText, setNoteText] = useState("");
   const [noteDate, setNoteDate] = useState("");
@@ -30,9 +31,56 @@ function CreateNotes({ notes, setNotes }) {
     setNoteText("");
     setNoteDate("");
   };
+  const sortInAsc = () => {
+    const allNotes = [...notes];
+    allNotes.sort((a, b) => {
+      if (new Date(a.noteDate).valueOf() > new Date(b.noteDate).valueOf()) {
+        return 1;
+      } else if (
+        new Date(a.noteDate).valueOf() < new Date(b.noteDate).valueOf()
+      ) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    setNotes(allNotes);
+  };
+  const sortInDsc = () => {
+    const allNotes = [...notes];
+    allNotes.sort((a, b) => {
+      if (new Date(a.noteDate).valueOf() > new Date(b.noteDate).valueOf()) {
+        return -1;
+      } else if (
+        new Date(a.noteDate).valueOf() < new Date(b.noteDate).valueOf()
+      ) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    setNotes(allNotes);
+  };
   return (
     <div className="notes">
       <form onSubmit={createNote} className="notes-header">
+        <span>
+          <button
+            onClick={() => {
+              sortInAsc();
+            }}
+          >
+            Sort in Asc
+          </button>
+          <button
+            onClick={() => {
+              sortInDsc();
+            }}
+          >
+            Sort in Dsc
+          </button>
+        </span>
         <input
           className="notes-input"
           type="text"
