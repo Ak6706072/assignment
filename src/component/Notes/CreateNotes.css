@@ -17,3 +17,17 @@
   margin: 2px;
   height: 40px;
 }
+.notes-sorting-functionality {
+  text-align: center;
+  padding: 10px;
+}
+
+.notes-sorting-functionality > button {
+  border: 1px solid gray;
+  margin: 5px;
+  padding: 5px;
+}
+.notes-sorting-functionality > button:hover {
+  background-color: rgba(231, 83, 83, 0.863);
+  color: black;
+}

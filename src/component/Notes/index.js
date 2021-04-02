@@ -5,6 +5,7 @@ function CreateNotes({ notes, setNotes }) {
   const [noteText, setNoteText] = useState("");
   const [noteDate, setNoteDate] = useState("");
   const [err, setErr] = useState("");
+
   const createNote = (e) => {
     e.preventDefault();
     if (noteDate == "" || noteText == "") {
@@ -25,7 +26,7 @@ function CreateNotes({ notes, setNotes }) {
       noteDate: noteDate,
       isEditing: false,
     };
-    // console.log(noteDate, noteText);
+
     const allNotes = [...notes, obj];
     setNotes(allNotes);
     setNoteText("");
@@ -62,48 +63,91 @@ function CreateNotes({ notes, setNotes }) {
     });
     setNotes(allNotes);
   };
+  const sortInAscById = () => {
+    const allNotes = [...notes];
+    allNotes.sort((a, b) => {
+      if (a.id > b.id) {
+        return 1;
+      } else if (a.id < b.id) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    setNotes(allNotes);
+  };
+  const sortByName = () => {
+    const allNotes = [...notes];
+    allNotes.sort((a, b) => {
+      if (a.noteText > b.noteText) {
+        return 1;
+      } else if (a.noteText < b.noteText) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    setNotes(allNotes);
+  };
+
   return (
-    <div className="notes">
-      <form onSubmit={createNote} className="notes-header">
-        <span>
-          <button
-            onClick={() => {
-              sortInAsc();
+    <>
+      <div className="notes">
+        <form onSubmit={createNote} className="notes-header">
+          <input
+            className="notes-input"
+            type="text"
+            value={noteText}
+            placeholder="type your notes here"
+            onChange={(e) => {
+              setNoteText(e.target.value);
             }}
-          >
-            Sort in Asc
-          </button>
-          <button
-            onClick={() => {
-              sortInDsc();
+          />
+          <input
+            className="notes-input"
+            type="date"
+            value={noteDate}
+            onChange={(e) => {
+              setNoteDate(e.target.value);
             }}
-          >
-            Sort in Dsc
+          />
+          <button className="notes-btn" type="submit">
+            Create
           </button>
-        </span>
-        <input
-          className="notes-input"
-          type="text"
-          value={noteText}
-          placeholder="type your notes here"
-          onChange={(e) => {
-            setNoteText(e.target.value);
+        </form>
+        <p>{err}</p>
+      </div>
+      <div className="notes-sorting-functionality">
+        <button
+          onClick={() => {
+            sortInAsc();
           }}
-        />
-        <input
-          className="notes-input"
-          type="date"
-          value={noteDate}
-          onChange={(e) => {
-            setNoteDate(e.target.value);
-          }}
-        />
-        <button className="notes-btn" type="submit">
-          Create
+        >
+          AscSortByDate
         </button>
-      </form>
-      <p>{err}</p>
-    </div>
+        <button
+          onClick={() => {
+            sortInDsc();
+          }}
+        >
+          DscSortByDate
+        </button>
+        <button
+          onClick={() => {
+            sortInAscById();
+          }}
+        >
+          AscSortById
+        </button>
+        <button
+          onClick={() => {
+            sortByName();
+          }}
+        >
+          SortByName
+        </button>
+      </div>
+    </>
   );
 }
 

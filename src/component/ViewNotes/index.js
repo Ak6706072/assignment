@@ -2,7 +2,6 @@ import React from "react";
 import AllNotes from "./AllNotes";
 import "./ViewNotes.css";
 function ViewNotes({ notes, setNotes }) {
-  console.log(notes);
   return (
     <div className="view-notes">
       {notes.map((note, index) => {
